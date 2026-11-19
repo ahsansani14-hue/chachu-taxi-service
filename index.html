@@ -66,3 +66,72 @@ box-shadow:0 4px 12px rgba(0,0,0,0.3);
 ">
 WhatsApp Booking
 </a>
+
+<!-- CHACHU TAXI BOOKING FORM -->
+<div style="position:fixed;bottom:20px;right:15px;z-index:99999">
+<button onclick="document.getElementById('taxiForm').style.display='block'"
+style="background:#25D366;color:white;padding:15px 22px;border:0;border-radius:35px;font-weight:bold;font-size:16px">
+WhatsApp Booking
+</button>
+</div>
+
+<div id="taxiForm" style="display:none;position:fixed;inset:0;background:#0009;z-index:100000;overflow:auto;padding:20px">
+<div style="background:white;padding:22px;border-radius:15px;max-width:400px;margin:30px auto;color:#222">
+<h2 style="color:#128C45">Chachu Taxi Service</h2>
+<h3>Book Your Taxi</h3>
+
+<input id="custName" placeholder="Your Name" style="width:100%;padding:12px;margin:7px 0;box-sizing:border-box">
+
+<input id="pickup" placeholder="Pickup Location" style="width:100%;padding:12px;margin:7px 0;box-sizing:border-box">
+
+<select id="destination" style="width:100%;padding:12px;margin:7px 0">
+<option value="">Select Destination</option>
+<option>Jeddah Airport → Makkah (300 SAR)</option>
+<option>Makkah → Jeddah Airport (300 SAR)</option>
+<option>Makkah Ziyarat (300 SAR)</option>
+<option>Madinah Ziyarat (300 SAR)</option>
+<option>Masjid Aisha Pick & Drop (150 SAR)</option>
+<option>Masjid Ji'ranah Miqat Pick & Drop (200 SAR)</option>
+<option>Taif Ziyarat Pick & Drop (450 SAR)</option>
+<option>Makkah → Madinah (500 SAR)</option>
+<option>Madinah → Makkah (500 SAR)</option>
+</select>
+
+<input id="travelDate" type="date" style="width:100%;padding:12px;margin:7px 0;box-sizing:border-box">
+
+<input id="passengers" type="number" min="1" placeholder="Number of Passengers" style="width:100%;padding:12px;margin:7px 0;box-sizing:border-box">
+
+<button onclick="sendTaxiBooking()" style="width:100%;background:#25D366;color:white;padding:15px;border:0;border-radius:8px;font-weight:bold;margin-top:12px">
+Send Booking on WhatsApp
+</button>
+
+<button onclick="document.getElementById('taxiForm').style.display='none'" style="width:100%;padding:12px;margin-top:8px;border:0;background:#eee;border-radius:8px">
+Close
+</button>
+</div>
+</div>
+
+<script>
+function sendTaxiBooking(){
+const name=document.getElementById('custName').value.trim();
+const pickup=document.getElementById('pickup').value.trim();
+const destination=document.getElementById('destination').value;
+const date=document.getElementById('travelDate').value;
+const passengers=document.getElementById('passengers').value;
+
+if(!name||!pickup||!destination||!date||!passengers){
+alert('Please fill all booking details');
+return;
+}
+
+const message="Assalamualaikum Chachu Taxi Service!%0A"+
+"New Taxi Booking%0A"+
+"Name: "+encodeURIComponent(name)+"%0A"+
+"Pickup: "+encodeURIComponent(pickup)+"%0A"+
+"Destination: "+encodeURIComponent(destination)+"%0A"+
+"Date: "+encodeURIComponent(date)+"%0A"+
+"Passengers: "+encodeURIComponent(passengers);
+
+window.open("https://wa.me/966575415296?text="+message,"_blank");
+}
+</script>
